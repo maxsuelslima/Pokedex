@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct pokedexApp: App {
+    var pokemonRepository:PokemonRepository=PokemonRepository()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(pokemonRepository)
         }
     }
 }

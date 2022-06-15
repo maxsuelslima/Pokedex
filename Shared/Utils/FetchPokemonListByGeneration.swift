@@ -10,7 +10,7 @@ import Foundation
 
     func fetchPokemonsByGen(gen:Int=1) async throws->[String]{
         var pokeURLS:[String] = []
-        let data = try await downloadJSON(url: "https://pokeapi.co/api/v2/generation/\(gen)")
+        let data = try await downloadData(url: "https://pokeapi.co/api/v2/generation/\(gen)")
         guard let resp = try? JSONDecoder().decode(GenerationJSONModel.self, from: data) else {
             throw JSONDownloadErrors.urlError
         }

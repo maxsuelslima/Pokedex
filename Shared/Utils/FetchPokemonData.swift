@@ -13,10 +13,11 @@ enum erros:Error{
 
 func fetchPokemonData(pokeURL:String) async throws->Pokemon{
     print("url:\(pokeURL)")
-    let data = try await downloadJSON(url: pokeURL)
+    let data = try await downloadData(url: pokeURL)
     guard let pokemonData = try? JSONDecoder().decode(PokemonJSONModel.self, from: data) else {
         throw erros.urlError
     }
-    let pokemon=Pokemon(name:pokemonData.name, types: pokemonData.types, imageURL: pokemonData.sprites.front_default)
+    let imageData = try await downloadData(url: pokemonData.sprites.front_default)
+    let pokemon=Pokemon(name:pokemonData.name, types: pokemonData.types, image:imageData)
     return pokemon
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-func downloadJSON(url:String) async throws ->Data{
+func downloadData(url:String) async throws ->Data{
     guard let JSONUrl = URL(string: url) else {
         throw JSONDownloadErrors.urlError
     }
